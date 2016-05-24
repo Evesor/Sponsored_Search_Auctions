@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
 # http://pytest.org/
-# run py.test to run the tests (it magically finds things
-# called test_blah and runs them)
+# run py.test to run the tests
 
 from gsp import GSP
 

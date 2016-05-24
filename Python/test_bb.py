@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
 # http://pytest.org/
-# run py.test to run the tests (it magically finds things
-# called test_blah and runs them)
+# run py.test to run the tests
 
 from auction import History
 from pjl14bb import Pjl14bb
@@ -13,7 +12,7 @@ def dual_assert(x,y):
     assert B
 
 def test_bb():
-    budget = 1000  # don't want binding budget for this test 
+    budget = 1000  # don't want binding budget for this test
     t = 1  # considering the decision for round 1, after the hard-coded round 0
     # Hand-constructed example
 
@@ -22,13 +21,13 @@ def test_bb():
     # reserve = 0
 
     reserve = 0
-     
+
     bids = [[(3, 10), (2, 5), (1, 4)]]
     occupants = [[3, 2, 1]]
     slot_clicks = [[3, 2, 0]]
     per_click_payments = [[5, 4, 0]]
     slot_payments = [[15, 8, 0]]
-     
+
     history = History(bids, occupants, slot_clicks, per_click_payments, slot_payments)
 
     a1 = Pjl14bb(1, 8, budget)
@@ -50,12 +49,12 @@ def test_bb():
     # a3's utils for slots: [3 * (20 - 5), 2*(20-4), 0] = [45, 32, 0]
     assert a3.expected_utils(t, history, reserve) == [45, 32, 0]
     assert a3.target_slot(t, history, reserve) == (0, 5, 10)
-    # bid for slot 0: 20 (your value)   
+    # bid for slot 0: 20 (your value)
     dual_assert (a3.bid(t, history, reserve), 20)
     print "\n\tFinished test_bb"
-    
+
 def test_bb_reserve():
-    budget = 1000  # don't want binding budget for this test 
+    budget = 1000  # don't want binding budget for this test
     t = 1  # considering the decision for round 1, after the hard-coded round 0
 
     # Hand-constructed example:
@@ -64,13 +63,13 @@ def test_bb_reserve():
     # reserve = 0
 
     reserve = 5
-     
+
     bids = [[(3, 10), (2, 7), (1, 6)]]
     occupants = [[3, 2, 1]]
     slot_clicks = [[3, 2, 1]]
     per_click_payments = [[7, 6, 5]]
     slot_payments = [[21, 12, 5]]
-     
+
     history = History(bids, occupants, slot_clicks, per_click_payments, slot_payments)
 
     a1 = Pjl14bb(1, 8, budget)
@@ -99,7 +98,7 @@ def test_bb_reserve():
 
 def test_bb_overbid():
     # Test that agents don't overbid
-    budget = 1000  # don't want binding budget for this test 
+    budget = 1000  # don't want binding budget for this test
     t = 1  # considering the decision for round 1, after the hard-coded round 0
     # Hand-constructed example
 
@@ -108,13 +107,13 @@ def test_bb_overbid():
     # reserve = 0
 
     reserve = 0
-     
+
     bids = [[(3, 16), (2, 14), (1, 4)]]
     occupants = [[3, 2, 1]]
     slot_clicks = [[3, 2, 0]]
     per_click_payments = [[14, 4, 0]]
     slot_payments = [[42, 8, 0]]
-     
+
     history = History(bids, occupants, slot_clicks, per_click_payments, slot_payments)
 
     a1 = Pjl14bb(1, 8, budget)

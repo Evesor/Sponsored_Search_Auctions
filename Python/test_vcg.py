@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
 # http://pytest.org/
-# run py.test to run the tests (it magically finds things
-# called test_blah and runs them)
+# run py.test to run the tests
 
 from vcg import VCG
 
@@ -22,7 +21,7 @@ def test_mechanism():
     def norm(totals):
         """Normalize total payments by the clicks in each slot"""
         return map(lambda (x,y): x/y, zip(totals, slot_clicks))
-    
+
     # Allocs same as GSP, but payments are different
     reserve = 0
     (alloc, payments) = VCG.compute(slot_clicks, reserve, bids)
@@ -38,7 +37,7 @@ def test_mechanism():
     (alloc, payments) = VCG.compute(slot_clicks, reserve, bids)
     assert alloc == [5,3,4]
     # values, clicks: (20, 4); (18, 3); (14, 2); "(14, 1)"; "(14,0)"
-    # payments: [18+14+14+14 = 60, 14+14+14 = 42, 14, "14'] = 
+    # payments: [18+14+14+14 = 60, 14+14+14 = 42, 14, "14'] =
 
     assert payments == norm([60, 42, 28])
 
